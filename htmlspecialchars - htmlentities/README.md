@@ -41,7 +41,7 @@ echo $see;
 ```
 function check($a)
 {
-  $a = preg_replace('#\'#','&apos;',$a);    // To remove [ ' ]
+  $a = preg_replace('#\'#','&apos;',$a);    // Change [ ' ] To [ &apos; ]
   $a = preg_replace('#\\#','',$a);   // To remove [ / ]
   $a = htmlspecialchars($a); // or $a = htmlentities($a);
   return $a;
