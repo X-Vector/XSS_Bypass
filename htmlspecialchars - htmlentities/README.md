@@ -8,28 +8,32 @@ echo "htmlentities : ".htmlentities($a)."<br>";
 echo "htmlspecialchars : ".htmlspecialchars($a);
  ?>
 ```
-I Got This Result 
+- I Got This Result 
 ```
 htmlentities : !@#$%^&amp;*()}{\'&quot;|?&gt;&lt;`~}
 htmlspecialchars : !@#$%^&amp;*()}{\'&quot;|?&gt;&lt;`~}
 ```
-We See That There Function Change There Char `><"&` to There Entity Name
-and We See That This Char `'\` doesn't change these mean that if developer write this code By using htmlentities
+- We See That There Function Change There Char `><"&` to There Entity Name
+and We See That This Char `'\` doesn't change these mean that if developer write this code By using htmlentities or By Using htmlspecialchars if You Can Get XSS !!
 ```
+//By Using  htmlentities Function 
 $src = htmlentities($_GET['src']);
 $see = "<img src='".$src."' width=30% height=30%> ";
 echo $see;
-```
-or By Using htmlspecialchars 
-```
+
+// By Using htmlspecialchars Function
 $src = htmlspecialchars($_GET['src']);
 $see = "<img src='".$src."' width=30% height=30%> ";
 echo $see;
 ```
-You Can Get XSS !!
-Let's Try Using This Payload ` 'onerror='alert("XSS")'' ` with the Developer Code
-XSS PHOTO HERE
-as we have seen it is possible to skip this function if developer use single quotation in his code .
+
+- Let's Try Using This Payload ` 'onerror='alert("XSS")'' ` with the Developer Code
+
+
+![XSS](https://github.com/X-Vector/XSS_Bypass/blob/master/htmlspecialchars%20-%20htmlentities/XSS.png?raw=true)
+
+
+- As We See it is possible to skip this function if developer use single quotation in his code .
 
 # How To Prevent XSS :
 - To Prevent XSS and To Be Safe You Must replace `'` with `&apos;` and remove `\` 
