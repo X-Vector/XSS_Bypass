@@ -36,8 +36,8 @@ echo $see;
 - As We See it is possible to skip this function if developer use single quotation in his code .
 
 # How To Prevent XSS :
-- To Prevent XSS and To Be Safe You Must replace `'` with `&apos;` and remove `\` 
-- You Can Use This Simple Code To Prevent XSS in Your Site
+- To Prevent XSS and To Be Safe You Must replace `'` with `&apos;` and remove `\` and use each of There Function
+- You Can Use This Simple Code To Prevent XSS
 ```
 function check($a)
 {
