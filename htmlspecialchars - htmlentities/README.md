@@ -47,7 +47,7 @@ function check($str)
   return $str;
 }
 ```
-- or You Can Filter You input As
+- Or You Can Filter You input By
 ```
 $value = htmlspecialchars($_GET['src'], ENT_QUOTES);
 ```
