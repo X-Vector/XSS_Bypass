@@ -1,4 +1,4 @@
-# Bybass htmlentities & htmlspecialchars
+# Bypass htmlentities & htmlspecialchars
 - We Know That ` htmlentities() ,htmlspecialchars() ` it's Function to Prevent XSS
 - When I Write This Code until I see how these functions are prevented XSS
 ```
