@@ -39,12 +39,16 @@ echo $see;
 - To Prevent XSS and To Be Safe You Must replace `'` with `&apos;` and remove `\` and use each of There Function
 - You Can Use This Simple Code To Prevent XSS
 ```
-function check($a)
+function check($str)
 {
-  $a = preg_replace('#\'#','&apos;',$a);    // Change [ ' ] To [ &apos; ]
-  $a = preg_replace('#\\#','',$a);   // To remove [ / ]
-  $a = htmlspecialchars($a); // or $a = htmlentities($a);
-  return $a;
+  $str = preg_replace('#\'#','&apos;',$str);    // Change [ ' ] To [ &apos; ]
+  $str = preg_replace('#\\#','',$str);   // To remove [ / ]
+  $str = htmlspecialchars($str); // or $str = htmlentities($str);
+  return $str;
 }
+```
+- or You Can Filter You input As
+```
+$value = htmlspecialchars($_GET['src'], ENT_QUOTES);
 ```
 
