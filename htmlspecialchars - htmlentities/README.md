@@ -13,7 +13,7 @@ echo "htmlspecialchars : ".htmlspecialchars($a);
 htmlentities : !@#$%^&amp;*()}{\'&quot;|?&gt;&lt;`~}
 htmlspecialchars : !@#$%^&amp;*()}{\'&quot;|?&gt;&lt;`~}
 ```
-- We See That There Function Change There Char `><"&` to There Entity Name
+- We See That The Two Function Change `><"&` to There Entity Name
 and We See That This Char `'\` doesn't change these mean that if developer write this code By using htmlentities or By Using htmlspecialchars You Can Get XSS !!
 ```
 //By Using  htmlentities Function 
