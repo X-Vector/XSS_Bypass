@@ -49,6 +49,10 @@ function check($str)
 ```
 - Or You Can Filter You input By
 ```
+// By htmlentities
+$value = htmlentities($_GET['src'], ENT_QUOTES);
+
+// By htmlspecialchars
 $value = htmlspecialchars($_GET['src'], ENT_QUOTES);
 ```
 
