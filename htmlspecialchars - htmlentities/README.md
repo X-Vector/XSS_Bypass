@@ -1,58 +1,45 @@
-# Bypass htmlentities & htmlspecialchars
-- We Know That ` htmlentities() ,htmlspecialchars() ` it's Function to Prevent XSS
-- When I Write This Code until I see how these functions are prevented XSS
-```
+# Bypassing htmlentities & htmlspecialchars
+It is well understood that `htmlentities()` and `htmlspecialchars()` are functions designed to mitigate XSS vulnerabilities.
+Upon writing the following code, I observed how these functions prevented XSS:
+
+```php
 <?php
 $a = "!@#$%^&*()}{\'\"|?><`~}";
 echo "htmlentities : ".htmlentities($a)."<br>";
 echo "htmlspecialchars : ".htmlspecialchars($a);
- ?>
+?>
 ```
-- I Got This Result 
-```
+The resulting output was:
+```php
 htmlentities : !@#$%^&amp;*()}{\'&quot;|?&gt;&lt;`~}
 htmlspecialchars : !@#$%^&amp;*()}{\'&quot;|?&gt;&lt;`~}
 ```
-- We See That The Two Function Change `><"&` to There Entity Name
-and We See That This Char `'\` doesn't change these mean that if developer write this code By using htmlentities or By Using htmlspecialchars You Can Get XSS !!
-```
-//By Using  htmlentities Function 
-$src = htmlentities($_GET['src']);
-$see = "<img src='".$src."' width=30% height=30%> ";
-echo $see;
 
-// By Using htmlspecialchars Function
-$src = htmlspecialchars($_GET['src']);
-$see = "<img src='".$src."' width=30% height=30%> ";
-echo $see;
-```
+It's evident that both functions replace `><"&` with their corresponding entity names, while the character `'\` remains unchanged. This implies that using `htmlentities` or `htmlspecialchars` alone may not fully protect against XSS vulnerabilities.
 
-- Let's Try Using This Payload ` 'onerror='alert("XSS")'' ` with the Developer Code
-
-
+Now, let's examine the vulnerability by utilizing the following payload: `'onerror='alert("XSS")''` with the developer's code.
 ![XSS](https://github.com/X-Vector/XSS_Bypass/blob/master/htmlspecialchars%20-%20htmlentities/XSS.png?raw=true)
 
-
-- As We See it is possible to skip this function if developer use single quotation in his code .
-
-# How To Prevent XSS :
-- To Prevent XSS and To Be Safe You Must replace `'` with `&apos;` and remove `\` and use each of There Function
-- You Can Use This Simple Code To Prevent XSS
-```
+As demonstrated, it's feasible to bypass these functions by using single quotation marks in the code.
+## How to Prevent XSS:
+To effectively prevent XSS and ensure security, it's recommended to replace `'` with `&apos;`, remove `\`, and utilize both functions.
+You can employ the following straightforward code to prevent XSS:
+```php
 function check($str)
 {
-  $str = preg_replace('#\'#','&apos;',$str);    // Change [ ' ] To [ &apos; ]
-  $str = preg_replace('#\\#','',$str);   // To remove [ / ]
+  $str = preg_replace('#\'#','&apos;',$str);    // Replace [ ' ] with [ &apos; ]
+  $str = preg_replace('#\\#','',$str);   // Remove [ / ]
   $str = htmlspecialchars($str); // or $str = htmlentities($str);
   return $str;
 }
 ```
-- Or You Can Filter You input By
-```
-// By htmlentities
+Alternatively, you can filter your input using:
+```php
+// Using htmlentities
 $value = htmlentities($_GET['src'], ENT_QUOTES);
 
-// By htmlspecialchars
+// Using htmlspecialchars
 $value = htmlspecialchars($_GET['src'], ENT_QUOTES);
 ```
+
 
